@@ -4,24 +4,11 @@ import { Error } from "./pages/Error"
 import { Content } from "./pages/Content"
 import { Navigation } from "./Components/Navigation/Navigation"
 import { Post } from "./Components/Post/Post"
-import { useState, useEffect } from 'react'
-import {getAPI} from "./API/Post/GetApi"
+import { Replies } from "./Components/Replies/Replies"
 import { PostForm } from "./Components/PostForm/PostForm"
 
 
 function App() {
-  const [post, setPost] = useState([])
-
-  useEffect(() => {
-    getAPI().then(data => setPost(data))
-  }, [])
-
-  const AddPost = (message) => {
-    setPost((prevPost) => {
-      console.log([...prevPost, message]),
-      [...prevPost, message]
-    })
-  }
 
   return (
     <>
@@ -29,8 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/content" element={<Content />} />
-        <Route path="/post" element={<Post post={post}/>} />
-        <Route path="/postform" element={<PostForm addpost={AddPost}/>} />
+        <Route path="/post" element={<Post />} ><Route path="/post/:id" element={<Replies />}></Route></Route>
+        <Route path="/postform" element={<PostForm />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </>

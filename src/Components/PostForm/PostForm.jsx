@@ -1,17 +1,16 @@
 import React from 'react'
-
-export const PostForm = ({addpost}) => {
+import { postAPI } from '../../API/Post/PostApi'
+export const PostForm = () => {
     const Submit = (i) => {
         i.preventDefault()
         const name = i.currentTarget.elements.name.value
         const text = i.currentTarget.elements.message.value
         const message = {
             "name": name,
-            "avatar": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/71.jpg",
-            "message": text,
-            "id": "100"
+            "avatar": "https://avatars.githubusercontent.com/u/47180288",
+            "message": text
         }
-        addpost(message)
+        postAPI(message)
     }
   return (
     <div>

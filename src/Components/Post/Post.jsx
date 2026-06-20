@@ -1,15 +1,22 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 
-export const Post = ({post}) => {
+import {getAPI} from "../../API/Post/GetApi"
+
+import { PostItem } from '../PostItem/PostItem';
+
+
+export const Post = () => {
+  const [post, setPost] = useState([])
+
+  useEffect(() => {
+    getAPI().then(data => setPost(data))
+  }, [])
   return (
     <div>
       <ul>
         {post.map(item => {
-          return <li key={item.id}>
-            <img style={{width:"200px"}} src={item.avatar} alt="image" />
-            <h3>{item.name}</h3>
-            <p>{item.message}</p>
-          </li>
+          return <PostItem key={item.id} item={item}/>
         })}
         </ul>
     </div>
