@@ -1,6 +1,10 @@
 import React from 'react'
 import { postAPI } from '../../API/Post/PostApi'
+import { useNavigate, useLocation, Navigate, replace} from 'react-router-dom'
 export const PostForm = () => {
+    const navigate = useNavigate()
+    const loc = useLocation()
+    console.log(loc)
     const Submit = (i) => {
         i.preventDefault()
         const name = i.currentTarget.elements.name.value
@@ -11,6 +15,9 @@ export const PostForm = () => {
             "message": text
         }
         postAPI(message)
+        navigate("/post", {replace: true})
+        
+        // return <Navigate to="/post" replace />
     }
   return (
     <div>

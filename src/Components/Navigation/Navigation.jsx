@@ -1,13 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink, useParams } from 'react-router-dom'
+import s from "./Navigation.module.css"
 
 export const Navigation = () => {
   return (
     <div>
-        <Link to={"/"}>Home</Link>
-        <Link to={"/content"}>Content</Link>
-        <Link to={"/post"}>Posts</Link>
-        <Link to={"/postform"}>Posts Form</Link>
+        <NavLink 
+        className={({isActive}) => isActive ? s.activelink : s.link} 
+        to={"/"} >Home</NavLink>
+        <NavLink 
+        className={({isActive}) => isActive ? s.activelink : s.link} 
+        to={"/content"}>Content</NavLink>
+        <NavLink 
+        className={({isActive}) => isActive ? s.activelink : s.link} 
+        to={"/post"}>Posts</NavLink>
+        <NavLink 
+        className={({isActive}) => isActive ? s.activelink : s.link} 
+        to={"/postform"}
+        state={{text: "hello"}}>Posts Form</NavLink>
     </div>
   )
 }
